@@ -1,7 +1,7 @@
 const DynamoDB = require("aws-sdk/clients/dynamodb");
 const DocumentClient = new DynamoDB.DocumentClient();
 const Chance = require("chance");
-const change = new Chance();
+const chance = new Chance();
 
 const { USERS_TABLE } = process.env;
 
@@ -28,7 +28,7 @@ module.exports.handler = async (event) => {
     await DocumentClient.put({
       TableName: USERS_TABLE,
       Item: user,
-      ConditionExpression: "attribute_not_exist(id)",
+      ConditionExpression: "attribute_not_exists(id)",
     }).promise();
     return event;
   } else {
